@@ -1,0 +1,142 @@
+#include<stdio.h>
+#include<stdlib.h>
+void read(int[],int);
+void print(int[],int);
+void merge(int a[20],int n);
+void divide(int a[20],int l,int h);
+void combine(int a[20],int l,int m1,int m2,int h,int b[20]);
+void main()
+{
+    int a[20],n;
+    printf("\nEnter number of elements:");
+    scanf("%d",&n);
+    read(a,n);
+    print(a,n);
+    divide(a,0,n-1);
+    print(a,n);
+}
+void read(int a[20],int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        printf("\nEnter a[%d]:",i);
+        scanf("%d",&a[i]);
+    }
+
+}
+void print(int a[20],int n)
+{
+    int i;
+    printf("\nEntered elements are:");
+    for(i=0;i<n;i++)
+    {
+        printf("\t%d",a[i]);
+    }
+}
+void divide(int a[20],int l,int h)
+{
+
+    int m1,m2,b[20];
+    if(l<h)
+    {
+        m1=l+(h-l)/3;
+        m2=l+2*((h-l)/3)+1;
+        divide(a,l,m1);
+        divide(a,m1+1,m2);
+        divide(a,m2+1,h);
+        combine(a,l,m1,m2,h,b);
+    }
+}
+void combine(int a[20],int l,int m1,int m2,int h,int b[20])
+{
+    int i=l,j=m1+1,d=m2+1,x,k=l;
+    while((i<=m1)&&(j<=m2)&&(d<=h))
+    {
+        if((a[i]<a[j])&&(a[i]<a[d]))
+        {
+            b[k]=a[i];
+            k++;
+            i++;
+        }
+        else if(a[j]<a[d])
+        {
+            b[k]=a[j];
+            k++;
+            j++;
+        }
+        else{
+            b[k]=a[d];
+            d++;
+            k++;
+        }
+    }
+    while((i<=m1)&&(j<=m2))
+    {
+        if(a[i]<a[j])
+        {
+            b[k]=a[i];
+            k++;
+            i++;
+        }
+        else
+        {
+            b[k]=a[j];
+            k++;
+            j++;
+        }
+    }
+    while((j<=m2)&&(d<=h))
+    {
+        if(a[j]<a[d])
+        {
+            b[k]=a[j];
+            k++;
+            j++;
+        }
+        else
+        {
+            b[k]=a[d];
+            k++;
+            d++;
+        }
+    }
+
+    while((i<=m1)&&(d<=h))
+    {
+        if(a[i]<a[d])
+        {
+            b[k]=a[i];
+            k++;
+            i++;
+        }
+        else
+        {
+            b[k]=a[d];
+            k++;
+            d++;
+        }
+    }
+    while(i<=m1)
+    {
+        b[k]=a[i];
+        k++;
+        i++;
+    }
+    while(j<=m2)
+    {
+        b[k]=a[j];
+        k++;
+        j++;
+    }
+    while(d<=h)
+    {
+        b[k]=a[d];
+        k++;
+        d++;
+    }
+    for(x=0;x<k;x++)
+    {
+        a[x]=b[x];
+    }
+}
