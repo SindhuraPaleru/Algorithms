@@ -1,0 +1,10 @@
+Description:
+Dijkstra's algorithm finds the length of an shortest path between two vertices in a graph.
+1. Choose the source vertex
+2. Define a set S of vertices, and initialize it to empty set. As the algorithm progresses, the set S will store those vertices to which a shortest path has been found.
+3. Label the source vertex with 0, and insert it into S.
+4. Consider each vertex not in S connected by an edge from the newly inserted vertex. Label the vertex not in S with the label of the newly inserted vertex + the length of the edge.
+o But if the vertex not in S was already labeled, its new label will be min(label of newly inserted vertex + length of edge, old label)
+5. Pick a vertex not in S with the smallest label, and add it to S.
+6. Repeat from step 4, until the destination vertex is in S or there are no labeled vertices not in S.
+If the destination is labeled, its label is the distance from source to destination. If it is not labeled, there is no path from the source to the destination.
