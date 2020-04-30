@@ -1,0 +1,12 @@
+n queens are to be placed on an n x n chess board so that no two queens attack each other i.e there are not in the same column ,not in same row and not in the same diagonal
+For an 8 by 8 chess board there are approximately 4.4 billion 8-tuples to examine.
+Placement of queens on distinct rows and columns we require the examination of at most 8! i.e 40320.
+Solution:
+ The solution vector X (X1…Xn) represents a solution in which Xi is the column of the th row where I th queen is placed.
+ First, we have to check no two queens are in same row.
+ Second, we have to check no two queens are in same column.
+ The function, which is used to check these two conditions, is [I, X (j)], which gives position of the I th queen, where I represents the row and X (j) represents the column position.
+ Third, we have to check no two queens are in it diagonal.
+ Consider two dimensional array A[1:n,1:n] in which we observe that every element on the same diagonal that runs from upper left to lower right has the same value.
+ Also, every element on the same diagonal that runs from lower right to upper left has the same value.
+ Suppose two queens are in same position (i,j) and (k,l) then two queens lie on the same diagonal , if and only if |j-l|=|I-k|.
