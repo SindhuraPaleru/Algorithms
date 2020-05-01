@@ -1,0 +1,27 @@
+Spanning tree:
+a spanning tree T of a connected, undirected graph G is a tree
+composed of all the vertices and some (or perhaps all) of the
+edges of G. Informally, a spanning tree of G is a selection of
+edges of G that form a tree spanning every vertex. That is,
+every vertex lies in the tree, but no cycles (or loops) are
+formed. On the other hand, every bridge of G must belong to T.
+
+Minimum spanning tree:
+A minimum spanning tree (MST) or minimum weight spanning tree is
+then a spanning tree with weight less than or equal to the
+weight of every other spanning tree.
+
+The only spanning tree of the empty graph (with an empty vertex
+set) is again the empty graph. The following description assumes
+that this special case is handled separately.
+The algorithm continuously increases the size of a tree, one
+edge at a time, starting with a tree consisting of a single
+vertex, until it spans all vertices.
+
+Input: A non-empty connected weighted graph with vertices V
+and edges E (the weights can be negative).
+Initialize: Vnew = {x}, where x is an arbitrary node (starting point) from V, Enew = {}
+ Repeat until Vnew = V:
+o Choose an edge (u, v) with minimal weight such that u is in Vnew and v is not (if there are multiple edges with the same weight, any of them may be picked)
+o Add v to Vnew, and (u, v) to Enew
+ Output: Vnew and Enew describe a minimal spanning tree
