@@ -1,0 +1,154 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct mat
+{
+    int m[20][20];
+};
+typedef struct mat matrix;
+matrix read(int n)
+{
+    matrix a;
+    int i,j;
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("\n%d %d:",i,j);
+            scanf("%d",&a.m[i][j]);
+        }
+    }
+    return a;
+}
+void print(matrix a,int n)
+{
+    int i,j;
+    printf("\n");
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("\t%d",a.m[i][j]);
+        }
+        printf("\n");
+    }
+}
+matrix add(matrix a,matrix b,int n)
+{
+    matrix c;
+    int i,j;
+    for(i=0;i<n;i++)
+        for(j=0;j<n;j++)
+            c.m[i][j]=a.m[i][j]+b.m[i][j];
+    return c;
+}
+matrix sub(matrix a,matrix b,int n)
+{
+    matrix c;
+    int i,j;
+    for(i=0;i<n;i++)
+        for(j=0;j<n;j++)
+            c.m[i][j]=a.m[i][j]-b.m[i][j];
+    return c;
+}
+matrix multiply(matrix a,matrix b,int n)
+{
+    int i,j;
+    matrix c;
+    matrix c11,c12,c21,c22;
+    matrix b11,b12,b21,b22;
+    matrix a11,a12,a21,a22;
+    matrix p,q,r,s,t,u,v;
+    if(n==1)
+    {
+        c.m[0][0]=a.m[0][0]*b.m[0][0];
+        return c;
+    }
+    else
+    {
+        n=n/2;
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+            {
+                a11.m[i][j]=a.m[i][j];
+                b11.m[i][j]=b.m[i][j];
+            }
+
+
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+            {
+                a12.m[i][j]=a.m[i][j+n];
+                b12.m[i][j]=b.m[i][j+n];
+            }
+
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+            {
+                a21.m[i][j]=a.m[i+n][j];
+                b21.m[i][j]=b.m[i+n][j];
+            }
+
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+            {
+                a22.m[i][j]=a.m[i+n][j+n];
+                b22.m[i][j]=b.m[i+n][j+n];
+            }
+        p=multiply(a11,sub(b12,b22,n),n);
+        q=multiply(b22,add(a11,a12,n),n);
+        r=multiply(b11,add(a21,a22,n),n);
+        s=multiply(a22,sub(b21,b11,n),n);
+        t=multiply(add(a11,a22,n),add(b11,b22,n),n);
+        u=multiply(sub(a12,a22,n),add(b21,b22,n),n);
+        v=multiply(sub(a11,a21,n),add(b11,b12,n),n);
+
+        c11=sub(add(t,s,n),sub(q,u,n),n);
+        c12=add(p,q,n);
+        c21=add(r,s,n);
+        c22=sub(add(p,t,n),add(r,v,n),n);
+
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+            {
+                c.m[i][j]=c11.m[i][j];
+            }
+
+
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+            {
+                c.m[i][j+n]=c12.m[i][j];
+            }
+
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+            {
+                c.m[i+n][j]=c21.m[i][j];
+            }
+
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+            {
+                c.m[i+n][j+n]=c22.m[i][j];
+                //b22.m[i][j]=b.m[i+n][j+n];
+            }
+        return c;
+    }
+
+}
+void main()
+{
+    matrix a,b,c;
+    int n;
+    printf("\nEnter number of elements:");
+    scanf("%d",&n);
+    printf("\nEnter matrix 1:");
+    a=read(n);
+    printf("\nEnter matrix 2:");
+    b=read(n);
+    printf("\nEntered matrices are:");
+    print(a,n);
+    print(b,n);
+    c=multiply(a,b,n);
+    print(c,n);
+}
