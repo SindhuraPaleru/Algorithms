@@ -1,0 +1,3 @@
+We are given ‘n’ positive numbers called weights and we have to find all combinations of these numbers whose sum is M. this is called sum of subsets problem.
+If we consider backtracking procedure using fixed tuple strategy , the elements X(i) of the solution vector is either 1 or 0 depending on if the weight W(i) is included or not.
+If the state space tree of the solution, for a node at level I, the left child corresponds to X(i)=1 and right to X(i)=0.
