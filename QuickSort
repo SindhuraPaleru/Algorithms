@@ -1,0 +1,68 @@
+#include<stdio.h>
+void read(int[],int);
+void print(int[],int);
+void quicksort(int a[20],int l,int h);
+int partition(int a[20],int l,int h);
+void main()
+{
+    int a[20],n,l,h;
+    printf("\nEnter number of elements:");
+    scanf("%d",&n);
+    read(a,n);
+    print(a,n);
+    l=0;
+    h=n-1;
+    quicksort(a,l,h);
+    print(a,n);
+}
+void read(int a[20],int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        printf("\nEnter a[%d]:",i);
+        scanf("%d",&a[i]);
+    }
+
+}
+void print(int a[20],int n)
+{
+    int i;
+    printf("\nEntered elements are:");
+    for(i=0;i<n;i++)
+    {
+        printf("\t%d",a[i]);
+    }
+}
+void quicksort(int a[20],int l,int h)
+{
+    int i;
+    if(l<h)
+    {
+        i=partition(a,l,h);
+        quicksort(a,l,i-1);
+        quicksort(a,i+1,h);
+    }
+
+}
+int partition(int a[20],int l,int h)
+{
+    int p=l,i=l+1,j=h,t;
+    while(i<j)
+    {
+        while((a[i]<=a[p])&&(i<=h))
+            i++;
+        while((a[p]<a[j])&&(j>l))
+            j--;
+        if(i<j)
+        {
+            t=a[i];
+            a[i]=a[j];
+            a[j]=t;
+        }
+    }
+    t=a[j];
+    a[j]=a[p];
+    a[p]=t;
+    return j;
+}
