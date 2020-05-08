@@ -1,0 +1,93 @@
+#include<stdio.h>
+#include<stdlib.h>
+void read(int[],int);
+void print(int[],int);
+void mergesort(int a[20],int l,int h);
+void merge(int a[20],int l,int m,int h,int b[20]);
+void main()
+{
+    int a[20],n,l,h;
+    printf("\nEnter number of elements:");
+    scanf("%d",&n);
+    read(a,n);
+    print(a,n);
+    l=0;
+    h=n-1;
+    mergesort(a,l,h);
+    print(a,n);
+}
+void read(int a[20],int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        printf("\nEnter a[%d]:",i);
+        scanf("%d",&a[i]);
+    }
+
+}
+void print(int a[20],int n)
+{
+    int i;
+    printf("\nEntered elements are:");
+    for(i=0;i<n;i++)
+    {
+        printf("\t%d",a[i]);
+    }
+}
+void mergesort(int a[20],int l,int h)
+{
+    int m,b[20];
+    if(l<h)
+    {
+        m=(l+h)/2;
+        mergesort(a,l,m);
+        mergesort(a,m+1,h);
+        merge(a,l,m,h,b);
+    }
+}
+void merge(int a[20],int l,int m,int h,int b[20])
+{
+    int i=l,j=m+1,k=l,x;
+    while(i<=m&&j<=h)
+    {
+        if(a[i]<a[j])
+        {
+            b[k]=a[i];
+            k++;
+            i++;
+        }
+        else if(a[i]>a[j])
+        {
+            b[k]=a[j];
+            k++;
+            j++;
+        }
+        else
+        {
+            b[k]=a[i];
+            k++;
+            i++;
+            b[k]=a[j];
+            k++;
+            j++;
+        }
+    }
+    while(i<=m)
+    {
+        b[k]=a[i];
+        k++;
+        i++;
+    }
+    while(j<=h)
+    {
+        b[k]=a[j];
+        k++;
+        j++;
+    }
+    for(x=l;x<k;x++)
+    {
+        a[x]=b[x];
+    }
+}
+
