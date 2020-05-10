@@ -62,4 +62,4 @@ printf("\nEnter the capacityacity of knapsack:- ");
 scanf("%f", &capacity);
 knapsack(a,num,capacity);
 return(0);
-}
+}  
