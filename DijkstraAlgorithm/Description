@@ -1,4 +1,5 @@
 Description:
+
 Dijkstra's algorithm finds the length of an shortest path between two vertices in a graph.
 1. Choose the source vertex
 2. Define a set S of vertices, and initialize it to empty set. As the algorithm progresses, the set S will store those vertices to which a shortest path has been found.
