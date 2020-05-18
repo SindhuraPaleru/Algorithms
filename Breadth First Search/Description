@@ -1,3 +1,3 @@
 BFS is one of the graph traversal technique, BFS was implemented by using queue. queue follows LIFO(Last In First Out) mechanisam.
 Like DFS in BFS there is no backtracking. In this traversing is done as first visit the all possible vertices connected to source vertices and place them in queue .next chouse the minimum vertices dequeue that vertices and repeat same process without forming loop.
-Algorithm was terminated when all vertices are visited. For undirected graph BFS gives the minimum spanning tree.
+Algorithm was terminated when all vertices are visited. For undirected graph BFS gives the minimum spanning  tree.
