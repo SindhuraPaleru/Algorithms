@@ -1,5 +1,6 @@
 #include<stdio.h>
 #define max 10
+
 int n,adj[max][max],visited[max];
 void bfs();
 void readmatrix();
