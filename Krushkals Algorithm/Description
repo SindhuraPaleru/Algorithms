@@ -2,5 +2,6 @@ Kruskal's algorithm is an algorithm in graph theory that finds a minimum spannin
  Create a forest T (a set of trees), where each vertex in the graph is a separate tree
  Create a set S containing all the edges in the graph
  While S is non empty and T is not yet spanning
+
 o remove an edge with minimum weight from S
 o if that edge connects two different trees, then add it to the forest, combining two trees into a single tree, otherwise discard that edge. At the termination of the algorithm, the forest has only one component and forms a minimum spanning tree of the graph.
