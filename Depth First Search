@@ -3,7 +3,6 @@ int i,j,k,n;
 int graph[20][20];
 int visited[20];
 void dfs(int);
-
 void main()
 {
     printf("Enter number of nodes:");
